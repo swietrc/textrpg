@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-#command interpretor
+#command reader
 
 import gui
-import player2 as player
+import player
 from main import *
 
 
@@ -28,7 +28,7 @@ def read(display, player, text):
 
     args = split_string(text)
     args = del_pronouns(args)
-	
+    
     if args[0] in commands:
         if len(args) > 1:
             commands[args[0]](display, args[1])
@@ -36,7 +36,7 @@ def read(display, player, text):
             commands[args[0]](display)
         else:
             print("Error Interpreter")
-	
+
 
 
 

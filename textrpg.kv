@@ -35,6 +35,7 @@
 						pos_hint: {'bottom': 1}
 						size: (200,175)
 					CharacterInfosBox:
+						id: info_box
 						pos_hint: {'bottom':1}
 						size: (200,175)
 
@@ -66,5 +67,5 @@
 			size_hint: (None, None)
 			text: ""
 			multiline: False
-			on_text_validate: root.on_enter(self.text)
+			on_text_validate: root.on_enter()
 		

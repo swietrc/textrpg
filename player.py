@@ -22,7 +22,6 @@ class Player(Character):
         self.name="John Doe"
         self.hp=100 #The players health
         self.maxhp=100 #The players max health
-        self.ap=6 #?
         self.armor=0 #The players armor
         self.xposition=0 #The x location of the player
         self.yposition=0  #The y location of the player
@@ -53,10 +52,20 @@ class Player(Character):
 
     def get_stats(self, widget, *args, **kwargs):
         widget.add_text("Vie: "+str(self.hp)+"\nArmure: "+str(self.armor)+"\nPosition: "+str(self.xposition)+", "+str(self.yposition))
+
+    def has_armor(self):
+        if self.armor>0:
+            return True
+        else:
+            return False
+
+    def has_sword(self):
+        if self.sword == True:
+            return True
+        else:
+            return False
  
         
-
-
 class Enemy(Character):
     def __init__(self):
         Character.__init__(self)

@@ -2,7 +2,6 @@
 
 from gui import *
 import kivy
-from player2 import *
 kivy.require('1.8.0')
 
 from kivy.app import App
