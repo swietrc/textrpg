@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-food_dictionary={"bread":5,"fish":7, "apple":2,"potion":15}
-armor_dictionary={"helmet":5, "cheat":999}
-
-'''définition de la classe joueur'''
+'''Player Class'''
 
 class Character:
     def __init__(self):
@@ -23,12 +20,16 @@ class Player(Character):
         self.hp=100 #The players health
         self.maxhp=100 #The players max health
         self.armor=0 #The players armor
+        self.sword=False #If the player has a sword
         self.xposition=0 #The x location of the player
         self.yposition=0  #The y location of the player
-        self.sword=False #If the player has a sword
-        self.shield=False #If the player has a shield
         self.turns=0 #The amount of turns the player has had
 
+    def is_alive(self):
+        if self.hp>0:
+            return True
+        else:
+            return False
     def add_hp(self,hp):
         """Adds health points to the player"""
         hp=int(hp)
@@ -37,18 +38,10 @@ class Player(Character):
         else:
             self.hp=self.maxhp
 
-    def add_armor(self,armor):
+    def add_armor(self, armor):
         """Adds armor points to the player"""
         armor=int(armor)
         self.armor = self.armor+armor
-
-    def eat(self, food):
-        food_value=food_dictionnary[food]
-        self.add_hp(food_value)
-
-    def equip(self, armor):
-        armor_value=armor_dictionnary[armor]
-        self.add_armor(armor_value)
 
     def get_stats(self, widget, *args, **kwargs):
         widget.add_text("Vie: "+str(self.hp)+"\nArmure: "+str(self.armor)+"\nPosition: "+str(self.xposition)+", "+str(self.yposition))
@@ -64,6 +57,21 @@ class Player(Character):
             return True
         else:
             return False
+
+    def get_pos(self):
+        return (xposition, yposition)
+
+    def get_hp(self):
+        return self.hp
+
+    def get_armor(self):
+        return self.armor
+
+    def find_armor(self):
+        self.add_armor(20)
+
+    def find_food(self):
+        self.add_hp(50)
  
         
 class Enemy(Character):
