@@ -1,0 +1,70 @@
+<BackgroundImage>:
+	canvas:
+		Color:
+			rgb: (1,1,1)
+		Rectangle:
+			source: 'background.png'
+			pos: self.pos
+			size: self.size
+
+<Game>:
+	BackgroundImage:
+		size: root.size
+		orientation: 'vertical'
+		padding: 30
+		spacing: 30
+		BoxLayout:
+			orientation: 'horizontal'
+			size: (740,480)
+			size_hint: (None, None)
+			spacing: 30
+			
+
+			
+			BoxLayout:
+				orientation: 'vertical'
+				size_hint: (None, None)
+				size: (540, 480)
+				spacing: 30		
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint: (None, None)
+					size: (540, 240)
+					spacing: 30
+					MiniMapBox:
+						pos_hint: {'bottom': 1}
+						size: (200,175)
+					CharacterInfosBox:
+						pos_hint: {'bottom':1}
+						size: (200,175)
+
+				ScrollView:
+					size_hint: (None, None)
+					size: (540,210)
+					TextDisplay:
+						id: txt_display
+						padding_x: -5
+						color: (1,1,1,1)
+						size_hint: (1,None)
+						width: 535
+						text: ""
+						text_size: self.width, None
+						font_size: 12
+						height: self.texture_size[1] 	
+
+						
+			Button:
+				size_hint: (None, None)
+				size: (170,480)
+				text:'B2'
+					
+
+				
+		TextInput:
+			id: txt_input
+			size: (740,30)
+			size_hint: (None, None)
+			text: ""
+			multiline: False
+			on_text_validate: root.on_enter(self.text)
+		
