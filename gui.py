@@ -41,8 +41,11 @@ class Game(Widget):
         Clock.schedule_once(self.refocus_txtinput)
 
     def update(self):
-        read(self.ids.txt_display, self.player, self.ids.txt_input.text)
+        self.update_game_state()
         self.update_display()
+
+    def update_game_state(self):
+        read(self.ids.txt_display, self.player, self.ids.txt_input.text)
 
     def update_display(self):
         self.ids.info_box.get_player_stats(self.player)

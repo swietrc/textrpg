@@ -4,8 +4,6 @@
 #command reader
 
 import gui
-import player
-from main import *
 
 
 pronouns = ['LE', 'LA',
@@ -14,6 +12,7 @@ pronouns = ['LE', 'LA',
 
 #retourne une liste des mots dans la chaine
 def split_string(text):
+    text = text.upper()
     return text.split(' ')
 
 #retourne un tableau sans pronoms
@@ -24,7 +23,8 @@ def del_pronouns(text):
     return text
 
 def read(display, player, text):
-    commands = {"STATS": player.get_stats}
+    commands = {"STATS": player.get_stats,
+                "ALLER": player.move}
 
     args = split_string(text)
     args = del_pronouns(args)

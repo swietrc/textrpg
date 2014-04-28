@@ -30,13 +30,24 @@ class Player(Character):
             return True
         else:
             return False
-    def add_hp(self,hp):
+
+    def move(self, widget, direction, *args, **kwargs):
+        if direction == 'N' or direction == 'NORD':
+            self.xposition += 1
+        elif direction == 'S' or direction == 'SUD':
+            self.xposition -= 1
+        elif direction == 'E' or direction == 'EST':
+            self.yposition += 1
+        elif direction == 'O' or direction == 'OUEST':
+            self.yposition -= 1
+
+    def add_hp(self, hp):
         """Adds health points to the player"""
         hp=int(hp)
-        if self.hp+hp<=self.maxhp:
+        if self.hp+hp <= self.maxhp:
             self.hp = self.hp+hp
         else:
-            self.hp=self.maxhp
+            self.hp = self.maxhp
 
     def add_armor(self, armor):
         """Adds armor points to the player"""
