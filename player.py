@@ -3,15 +3,14 @@
 
 '''Player Class'''
 
+import random
+
 class Character:
     def __init__(self):
         self.name = ""
         self.hp = 1
         self.maxhp = 1
 
-    def do_damage(self, enemy):
-        damage = min(max(randint(0, self.hp) - randint(0, enemy.health), 0), enemy.health)
-        enemy.hp -= damage
 
 class Player(Character):
     def __init__(self):
@@ -83,12 +82,30 @@ class Player(Character):
 
     def find_food(self):
         self.add_hp(50)
- 
-        
+
+    def do_damage(self,Enemy):
+        if self.sword==True:
+            damage_player=int(random.triangular(7,10))
+            #random.triangular c'est fantastique, la proba du médian est supérieur à la proba des extrémités
+            Enemy.hp -= damage_player
+            return Enemy.hp
+        else:
+            damage_player=int(random.triangular(3,7))
+            Enemy.hp -= damage_player
+            return Enemy.hp
+
+
 class Enemy(Character):
     def __init__(self):
         Character.__init__(self)
-        self.name = "Ugly Troll"
+        self.name = "vilain"
+        self.hp=20
+
+    def do_damage(self,player):
+        damage_enemy=int(random.triangular(2,5))
+        player.hp -= damage_enemy
+        return player.hp
+
 
 
 
