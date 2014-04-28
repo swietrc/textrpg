@@ -11,14 +11,11 @@ class Character:
         self.hp = 1
         self.maxhp = 1
 
-    #def do_damage(self, enemy):
-        #damage = randint(1,3)
-        #enemy.hp -= damage
 
 class Player(Character):
     def __init__(self):
         Character.__init__(self)
-        self.name="gentil"
+        self.name="John Doe"
         self.hp=100 #The players health
         self.maxhp=100 #The players max health
         self.armor=0 #The players armor
@@ -87,7 +84,7 @@ class Player(Character):
         self.add_hp(50)
 
     def do_damage(self,Enemy):
-        while self.sword==True:
+        if self.sword==True:
             damage_player=int(random.triangular(7,10))
             #random.triangular c'est fantastique, la proba du médian est supérieur à la proba des extrémités
             Enemy.hp -= damage_player
@@ -104,13 +101,11 @@ class Enemy(Character):
         self.name = "vilain"
         self.hp=20
 
-    def do_damage(self,Player):
+    def do_damage(self,player):
         damage_enemy=int(random.triangular(2,5))
-        Player.hp -= damage_enemy
-        return Player.hp
+        player.hp -= damage_enemy
+        return player.hp
 
 
-mechant=Enemy()
-gentil=Player()
 
 
