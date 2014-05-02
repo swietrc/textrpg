@@ -3,6 +3,7 @@
 
 from interpreter import *
 from player import *
+from tile import *
 import kivy
 kivy.require('1.8.0')
 
@@ -30,6 +31,8 @@ class Game(Widget):
     def __init__(self, *args, **kwargs):
         super(Game, self).__init__(**kwargs)
         self.player = Player()
+        self.position = self.player.get_pos()
+        self.map = MapTile()
         self.update()
 
     def on_enter(self): 
@@ -46,10 +49,15 @@ class Game(Widget):
 
     def update_game_state(self):
         read(self.ids.txt_display, self.player, self.ids.txt_input.text)
+        self.map.update(self.player)
+#        print(self.map.id)
 
     def update_display(self):
         self.ids.info_box.get_player_stats(self.player)
         self.ids.info_box.display_stats()
+        if self.player.get_pos() != self.position:
+            self.ids.minimap_box.reveal_map(self.player.get_pos())
+            self.position = self.player.get_pos()
 
     def refocus_txtinput(self, *args, **kwargs):
         """Refocuses the cursor on the text input"""
@@ -90,16 +98,13 @@ class MiniMapBox(RelativeLayout):
 #        print(self.spritesheet.textures.keys())
         self.decal_x = -88
         self.decal_y = -76
-        for i in range(0,8):
-            for j in range(0,7):
-                        self.reveal_map(('('+str(i)+','+str(j)+')'), ((i*25)+self.decal_x,(j*25)+self.decal_y))
-
+        self.reveal_map((0,0))
 
 
     def reveal_map(self, xy, *args, **kwargs):
         """displays coords xy of the minimap"""
-        coordinates = ((int(xy[1])*25)+self.decal_x,(int(xy[3])*25)+self.decal_y)
-        map_part = Image(texture=self.spritesheet[str(xy)], pos=coordinates)
+        coordinates = ((int(xy[0])*25)+self.decal_x,(int(xy[1])*25)+self.decal_y)
+        map_part = Image(texture=self.spritesheet["("+str(xy[0])+","+str(xy[1])+")"], pos=coordinates)
         self.add_widget(map_part)
 
 
