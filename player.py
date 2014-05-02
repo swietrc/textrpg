@@ -13,24 +13,27 @@ class Character:
 
 
 class Player(Character):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         Character.__init__(self)
-        self.name="John Doe"
-        self.hp=100 #The players health
-        self.maxhp=100 #The players max health
-        self.armor=0 #The players armor
-        self.sword=False #If the player has a sword
-        self.xposition=0 #The x location of the player
-        self.yposition=0  #The y location of the player
-        self.turns=0 #The amount of turns the player has had
+        self.name = "John Doe"          # player name
+        self.hp = 100                   # player health
+        self.maxhp = 100                # player max health
+        self.armor = 0                  # player armor
+        self.sword = False              # player has a sword
+        self.xposition = 0              # x location of the player
+        self.yposition = 0              # y location of the player
+        self.turns = 0                  # amount of turns played
 
-    def is_alive(self):
+    def is_alive(self, *args, **kwargs):
+        """returns True if the player is alive"""
         if self.hp>0:
             return True
         else:
             return False
 
     def move(self, widget, direction, *args, **kwargs):
+        """changes the position of the player"""
+        self.changed_location = True
         if direction == 'N' or direction == 'NORD':
             self.yposition += 1
         elif direction == 'S' or direction == 'SUD':
@@ -40,7 +43,7 @@ class Player(Character):
         elif direction == 'O' or direction == 'OUEST':
             self.xposition -= 1
 
-    def add_hp(self, hp):
+    def add_hp(self, hp, *args, **kwargs):
         """Adds health points to the player"""
         hp=int(hp)
         if self.hp+hp <= self.maxhp:
@@ -48,7 +51,7 @@ class Player(Character):
         else:
             self.hp = self.maxhp
 
-    def add_armor(self, armor):
+    def add_armor(self, armor, *args, **kwargs):
         """Adds armor points to the player"""
         armor=int(armor)
         self.armor = self.armor+armor
@@ -56,56 +59,58 @@ class Player(Character):
     def get_stats(self, widget, *args, **kwargs):
         widget.add_text("Vie: "+str(self.hp)+"\nArmure: "+str(self.armor)+"\nPosition: "+str(self.xposition)+", "+str(self.yposition))
 
-    def has_armor(self):
+    def has_armor(self, *args, **kwargs):
+        """returns True if player has armor points"""
         if self.armor>0:
             return True
         else:
             return False
 
-    def has_sword(self):
+    def has_sword(self, *args, **kwargs):
+        """returns True if player has a sword"""
         if self.sword == True:
             return True
         else:
             return False
 
-    def get_pos(self):
+    def get_pos(self, *args, **kwargs):
+        """returns the position of player"""
         return (self.xposition,self.yposition)
 
-    def get_hp(self):
+    def get_hp(self, *args, **kwargs):
+        """returns the health points of the player"""
         return self.hp
 
-    def get_armor(self):
+    def get_armor(self, *args, **kwargs):
+        """returns the armor of a player"""
         return self.armor
 
-    def find_armor(self):
+    def find_armor(self, *args, **kwargs):
+        """adds 20 armor points to player"""
         self.add_armor(20)
 
-    def find_food(self):
+    def find_food(self, *args, **kwargs):
+        """adds 50 health points to player"""
         self.add_hp(50)
 
-    def do_damage(self,Enemy):
-        if self.sword==True:
+    def do_damage(self, enemy, *args, **kwargs):
+        """calculates the amount of damage inflicted by player to enemy"""
+        if self.sword == True:
             damage_player=int(random.triangular(7,10))
-            #random.triangular c'est fantastique, la proba du médian est supérieur à la proba des extrémités
-            Enemy.hp -= damage_player
-            return Enemy.hp
+            enemy.hp -= damage_player
+            return enemy.hp
         else:
             damage_player=int(random.triangular(3,7))
-            Enemy.hp -= damage_player
-            return Enemy.hp
+            enemy.hp -= damage_player
+            return enemy.hp
 
 
 class Enemy(Character):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         Character.__init__(self)
-        self.name = "vilain"
-        self.hp=20
+        self.name = "Ugly Goblin"
+        self.hp = 20
 
-    def do_damage(self,player):
+    def do_damage(self, player, *args, **kwargs):
         damage_enemy=int(random.triangular(2,5))
         player.hp -= damage_enemy
-        return player.hp
-
-
-
-

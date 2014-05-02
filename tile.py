@@ -19,13 +19,16 @@ class MapTile():
 #        print(self.tile_infos)
 
     def update(self, player):
-        key = str(player.xposition)+str(player.yposition)
-        self.id = self.tile_infos[key]['id']
-        self.description = self.tile_infos[key]['description']
-        self.is_sword = self.tile_infos[key]['sword']
-        self.is_armor = self.tile_infos[key]['armor']
-        self.is_enemy = self.tile_infos[key]['enemy']
-        self.is_boss = self.tile_infos[key]['boss']
+        try:
+            key = str(player.xposition)+str(player.yposition)
+            self.id = self.tile_infos[key]['id']
+            self.description = self.tile_infos[key]['description']
+            self.is_sword = self.tile_infos[key]['sword']
+            self.is_armor = self.tile_infos[key]['armor']
+            self.is_enemy = self.tile_infos[key]['enemy']
+            self.is_boss = self.tile_infos[key]['boss']
+        except:
+            print("unable to load infos for coord "+key)
 
 
 

@@ -36,9 +36,3 @@ def read(display, player, text):
             commands[args[0]](display)
         else:
             print("Error Interpreter")
-
-
-
-
-
-
