@@ -4,15 +4,47 @@
         "description":"description",
         "sword":false,
         "armor":false,
-        "Enemy":false,
-        "Boss":false
+        "enemy":false,
+        "boss":false
     },
     "01":{
         "id":"(0,1)",
         "description":"description",
         "sword":false,
         "armor":false,
-        "Enemy":false,
-        "Boss":false
+        "enemy":false,
+        "boss":false
+    },
+    "02":{
+        "id":"(0,1)",
+        "description":"description",
+        "sword":false,
+        "armor":false,
+        "enemy":false,
+        "boss":false
+    },
+    "12":{
+        "id":"(0,1)",
+        "description":"description",
+        "sword":false,
+        "armor":false,
+        "enemy":false,
+        "boss":false
+    },
+    "22":{
+        "id":"(0,1)",
+        "description":"description",
+        "sword":false,
+        "armor":false,
+        "enemy":false,
+        "boss":false
+    },
+    "32":{
+        "id":"(0,1)",
+        "description":"description",
+        "sword":false,
+        "armor":false,
+        "enemy":false,
+        "boss":false
     }
 }

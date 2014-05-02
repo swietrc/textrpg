@@ -33,13 +33,13 @@ class Player(Character):
 
     def move(self, widget, direction, *args, **kwargs):
         if direction == 'N' or direction == 'NORD':
-            self.xposition += 1
-        elif direction == 'S' or direction == 'SUD':
-            self.xposition -= 1
-        elif direction == 'E' or direction == 'EST':
             self.yposition += 1
-        elif direction == 'O' or direction == 'OUEST':
+        elif direction == 'S' or direction == 'SUD':
             self.yposition -= 1
+        elif direction == 'E' or direction == 'EST':
+            self.xposition += 1
+        elif direction == 'O' or direction == 'OUEST':
+            self.xposition -= 1
 
     def add_hp(self, hp):
         """Adds health points to the player"""
@@ -70,7 +70,7 @@ class Player(Character):
             return False
 
     def get_pos(self):
-        return (xposition, yposition)
+        return (self.xposition,self.yposition)
 
     def get_hp(self):
         return self.hp
